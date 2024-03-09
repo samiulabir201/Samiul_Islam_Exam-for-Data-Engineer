@@ -1,0 +1,26 @@
+[2024-03-08T20:57:01.672+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: chef_jobs_extraction.extract_and_upload_task scheduled__2024-03-06T00:00:00+00:00 [queued]>
+[2024-03-08T20:57:01.696+0000] {taskinstance.py:1979} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: chef_jobs_extraction.extract_and_upload_task scheduled__2024-03-06T00:00:00+00:00 [queued]>
+[2024-03-08T20:57:01.697+0000] {taskinstance.py:2193} INFO - Starting attempt 1 of 2
+[2024-03-08T20:57:01.725+0000] {taskinstance.py:2214} INFO - Executing <Task(PythonOperator): extract_and_upload_task> on 2024-03-06 00:00:00+00:00
+[2024-03-08T20:57:01.745+0000] {standard_task_runner.py:60} INFO - Started process 374 to run task
+[2024-03-08T20:57:01.751+0000] {standard_task_runner.py:87} INFO - Running: ['***', 'tasks', 'run', 'chef_jobs_extraction', 'extract_and_upload_task', 'scheduled__2024-03-06T00:00:00+00:00', '--job-id', '23', '--raw', '--subdir', 'DAGS_FOLDER/Second_dag.py', '--cfg-path', '/tmp/tmp7z2v0q38']
+[2024-03-08T20:57:01.755+0000] {standard_task_runner.py:88} INFO - Job 23: Subtask extract_and_upload_task
+[2024-03-08T20:57:01.817+0000] {task_command.py:423} INFO - Running <TaskInstance: chef_jobs_extraction.extract_and_upload_task scheduled__2024-03-06T00:00:00+00:00 [running]> on host 976893b99e15
+[2024-03-08T20:57:01.912+0000] {taskinstance.py:2510} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='***' AIRFLOW_CTX_DAG_ID='chef_jobs_extraction' AIRFLOW_CTX_TASK_ID='extract_and_upload_task' AIRFLOW_CTX_EXECUTION_DATE='2024-03-06T00:00:00+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='scheduled__2024-03-06T00:00:00+00:00'
+[2024-03-08T20:57:01.920+0000] {taskinstance.py:2728} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 444, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/models/taskinstance.py", line 414, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 200, in execute
+    return_value = self.execute_callable()
+  File "/home/airflow/.local/lib/python3.8/site-packages/airflow/operators/python.py", line 217, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+  File "/opt/airflow/dags/Second_dag.py", line 24, in <lambda>
+    python_callable =lambda: exec(open('E:\Python_DAG\scripts\Chefs_Job_Scrapper.py').read()),
+FileNotFoundError: [Errno 2] No such file or directory: 'E:\\Python_DAG\\scripts\\Chefs_Job_Scrapper.py'
+[2024-03-08T20:57:01.939+0000] {taskinstance.py:1149} INFO - Marking task as UP_FOR_RETRY. dag_id=chef_jobs_extraction, task_id=extract_and_upload_task, execution_date=20240306T000000, start_date=20240308T205701, end_date=20240308T205701
+[2024-03-08T20:57:01.974+0000] {standard_task_runner.py:107} ERROR - Failed to execute job 23 for task extract_and_upload_task ([Errno 2] No such file or directory: 'E:\\Python_DAG\\scripts\\Chefs_Job_Scrapper.py'; 374)
+[2024-03-08T20:57:02.005+0000] {local_task_job_runner.py:234} INFO - Task exited with return code 1
+[2024-03-08T20:57:02.022+0000] {taskinstance.py:3309} INFO - 0 downstream tasks scheduled from follow-on schedule check
